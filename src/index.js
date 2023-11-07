@@ -2,7 +2,7 @@ const express  = require('express');
 const cors = require('cors')
 require('dotenv').config();
 const app = express()
-
+app.use(express.static('.'))
 app.use(cors())
 app.use(express.urlencoded())
 app.use(express.json());

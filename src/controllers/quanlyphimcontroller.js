@@ -87,11 +87,30 @@ const deletephim  =async (req, res) => {
     successCode(res,data,'ok')
 }
 
+const postcapnhathinhphim= async (req,res) =>{
+    const { filename } = req.file;
+    const { id } = req.params;
+
+    let getData = await model.Banner.findByPk(id);
+
+    let object = { ...getData, hinh_anh: `/public/img/${filename}` };
+ 
+    await model.Banner.update(object,
+        {
+            where: {
+                ma_banner: id
+            }
+        })
+    successCode(res, filename)
+
+}
+
 module.exports = {
     getbanner,
     getdanhsachphim,
     getlaydanhsachphimtheongay,
     postcapnhatphimmoi,
     postcapnhatphim,
-    deletephim
+    deletephim,
+    postcapnhathinhphim
 }
