@@ -48,7 +48,7 @@ const postcapnhatphimmoi = async (req, res) => {
 
     const { ten_phim, hinh_anh, mo_ta, ngay_khoi_chieu, dang_gia, hot, dang_chieu, sap_chieu } = req.body;
 
-
+        
     const data = await model.Phim.create({ ten_phim, hinh_anh, mo_ta, ngay_khoi_chieu, dang_gia, hot, dang_chieu, sap_chieu })
 
     try {
@@ -64,14 +64,14 @@ const postcapnhatphim = async (req, res) => {
     const data = await model.Phim.findByPk(id)
 
     if (data) {
-        let data2 = await model.Phim.update({ ten_phim, hinh_anh, mo_ta, ngay_khoi_chieu, dang_gia, hot, dang_chieu, sap_chieu }, {
+        await model.Phim.update({ ten_phim, hinh_anh, mo_ta, ngay_khoi_chieu, dang_gia, hot, dang_chieu, sap_chieu }, {
             where: {
                 ma_phim: id
             }
 
         })
-        const data3 = await model.Phim.findByPk(id)
-        successCode(res,data3, 'ok')
+        const data2 = await model.Phim.findByPk(id)
+        successCode(res,data2, 'ok')
     }
 }
 
